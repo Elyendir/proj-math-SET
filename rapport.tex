@@ -1,0 +1,154 @@
+\documentclass[a4paper,12pt,titlepage]{article}
+
+%% On charge quelques paquets
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{wrapfig}
+%% quelques définitions
+\theoremstyle{plain}
+\newtheorem{thm}{Théorème}
+\newtheorem{cor}[thm]{Corollaire}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}{Proposition}
+\newtheorem{dem}{Démonstration}
+
+%raccourci
+\newcommand{\Ftrois}[1]{\mathbb{F}^#1_3}
+%\newcommand{\F}[1]{\mathbb{F}^#1_3}
+
+\theoremstyle{definition}
+\newtheorem{defi}{Définition}
+\newtheorem{rmq}{Remarque}
+\newtheorem{ex}{Exemple}
+\newtheorem{exo}{exercice}
+
+\title{Projet de mathématiques \\
+		\large Interprétation géométrique des règles du jeu de SET}
+\author{Nathan COZZO \and Romain BOUARAH}
+%\date{}
+
+%% on commence
+\begin{document}
+
+\maketitle
+\tableofcontents
+\newpage
+
+\begin{abstract}
+Dans ce sujet, on verra comment interpréter les règles du jeu de SET de manière géométrique, puis grâce à cette interprétation comment déterminer le nombre de cartes minimal à disposer devant soi pour pouvoir toujours trouver un triplet de cartes.
+\end{abstract}
+
+\section{Présentation du jeu de SET}
+\subsection{Origine}
+Le Jeu de SET a été inventé par Marsha Falco en 1974. L'idée du jeu est venue lorsque Marsha essayait de comprendre si l'épilepsie chez les bergers allemands était héritée. 
+Elle représentait les données génétiques des chiens sous la forme de symboles en dessinant sur des fiches. 
+Marsha a constaté qu'il était amusant de trouver les différentes combinaisons et SET est né. Au fil des années, Marsha a perfectionné le jeu en jouant avec sa famille et ses amis. Il a finalement été lancé en 1990.
+
+\subsection{But}
+Chaque joueur doit trouver le maximum de sets. Un set est composé de trois cartes dont les quatre caractéristiques (prises séparément) sont : 
+\begin{itemize}
+\item soit totalement identiques (par exemple les trois cartes ont la même forme),
+\item soit totalement différentes (par exemple chacune des trois cartes est d'une couleur différente).
+\end{itemize}
+
+\subsection{Règles}
+Le jeu commence en disposant douze cartes devant les joueurs. Le premier joueur qui voit un set prend les trois cartes et les garde dans sa pile de gain. On complète avec trois cartes de la pioche. Si aucun set ne figure parmi les 12 cartes, on ajoute 3 cartes, mais on ne complètera pas après qu'un joueur a trouvé une solution.
+Le jeu est fini quand toutes les cartes ont été tirées et qu'il n'y a plus de set dans celles qui restent. Le gagnant est celui qui a le plus grand nombre de sets. 
+
+
+\section{Aspect Mathématique}
+\subsection{Combinatoire}
+
+\paragraph{Nombre de cartes} Chaque carte du jeu de SET est unique, en effet une carte représente une combinaison de quatre attributs, chacun des attributs pouvant prendre trois valeurs. Il y a donc $3^4=81$ cartes dans le jeu de SET.
+
+\paragraph{Probabilité d'obtenir un set en tirant 3 cartes au hasard} Avant de calculer la probabilité, il est important d'énoncer le théorème suivant :
+
+\begin{thm}[Théorème de construction d'un Set]\label{thm:Construction}
+Pour deux cartes, il y a exactement une carte qui complète ces deux cartes en un set.
+\end{thm}
+\begin{proof}
+Par définition, si les deux cartes ont la même forme alors la troisième carte a cette forme sinon les deux cartes n'ont pas la même forme alors la troisième carte a une forme différentes des deux autres. On cherche ainsi une carte vérifiant cette condition pour la forme et pour les autres attributs.
+\end{proof}
+D'après le théorème précédent, après avoir tiré deux cartes la troisième existe parmi les 79 cartes restantes. On en déduit qu'on a une probabilité de 1/79 d'obtenir un set en tirant 3 cartes aléatoirement.
+
+\paragraph{Nombre de sets dans le jeu} On tire une première carte parmi les 81 cartes, puis une deuxième parmi les 80 cartes restantes, d'après le théorème \ref{thm:Construction} la troisième carte complétant le set est unique. De plus, on ne compte pas les permutations possibles des cartes tirées, on a alors $\frac{81 \times 80 \times 1}{3!} = 1080$ sets possibles dans le jeu.
+
+\subsection{Interprétation géométrique des règles}
+Chaque carte est composée de quatre attributs pouvant prendre trois valeurs différentes. On peut alors dire qu'un attribut est représenté par un élément appartenant  à $\mathbb{F}_3$, un corps commutatif fini composé de trois éléments : 0,1,2.
+De plus, une carte possède quatre attributs, il y aura donc quatre dimensions (une pour chaque attribut). Une carte est alors représentée par un point de $\Ftrois{4}$. On peut ainsi poser le tableau suivant :
+
+\begin{center}
+\begin{tabular}{r l | c c c }
+ & & 0 & 1 & 2 \\
+\hline
+$x_1$: & Nombres     & un		& deux	  & trois 	\\
+$x_2$: & Remplissage & plein 	& hachuré & vide 	\\
+$x_3$: & Couleur     & rouge	& vert	  & violet 	\\
+$x_4$: & Forme       & ovale	& vague	  & losange \\
+\end{tabular}
+\end{center}
+
+\begin{ex}
+Le point de coordonnées $(1,0,1,2)$ représente la carte : \frame{\includegraphics[width=0.1\textwidth]{Img/1012.png}}.
+\end{ex}
+
+Sous cette formulation, on obtient la proposition suivante :
+\begin{prop}
+Trois cartes forment un set si et seulement si leur point représentatif dans  $\Ftrois{4}$ sont alignés.
+\end{prop}
+\begin{proof}
+Soit $\lambda_1,\lambda_2,\lambda_3 \in \mathbb{F}_3$. On a $\lambda_1 + \lambda_2 + \lambda_3 = 0$ si et seulement si $\lambda_1=\lambda_2=\lambda_3$ ou $\lambda_1,\lambda_2$ et $\lambda_3$ sont tous différents. Pour des points $a,b,c$ appartenant à  $\Ftrois{4}$, on a $a+b+c=0$ signifie que toutes les coordonnées sont soit identiques ou soit différentes.
+Soit $a,b,c$ des points de  $\Ftrois{4}$, on a $a+b+c=0 \iff a-2b+c=0 \iff a-b=b-c$ donc les trois points sont alignés.
+\end{proof}
+
+
+\subsection{Taille maximale d'un \emph{cap}}
+On appelle \emph{d-cap} un sous ensemble de  $\Ftrois{d}$ ne contenant pas trois points alignés. \\
+
+Nous nous posons la question : Combien de cartes au minimum doit-on disposer devant soi pour être certain d'avoir un set ? Cela revient, entre autre, à chercher la taille maximale d'un 4-cap. D'après l'article A090245 de l'\emph{OEIS}\footnote{L'Encyclopédie en ligne des suites de nombres entiers} la taille maximale d'un 4-cap est 20, il faudra alors disposer au minimum 21 cartes devant soi pour avoir un set. Avant de démontrer ce résultat, nous étudierons des variantes du jeu de SET en considérant, par exemple, une couleur fixée pour toutes les cartes. Autrement dit, nous travaillerons d'abord dans des sous-espaces de  $\Ftrois{4}$.
+
+\subsubsection{Taille maximale d'un \emph{2-cap}}
+\begin{prop}
+La taille maximale d'un \emph{2-cap} est 4.
+\end{prop}
+\begin{proof}
+Par l'absurde, supposons l'existence d'un \emph{2-cap} contenant 5 points $x_1,x_2,x_3,x_4,x_5$.
+Le plan  $\Ftrois{2}$ peut être décomposé comme l'union de trois droites parallèles tel qu'une droite contienne au plus deux points.  (...)
+\end{proof}
+
+\subsubsection{Taille maximale d'un \emph{3-cap}}
+\begin{prop}
+La taille maximale d'un \emph{3-cap} est 9.
+\end{prop}
+\begin{proof}
+Par l'absurde, (...)
+\end{proof}
+
+\subsubsection{Taille maximale d'un \emph{4-cap}}
+\begin{prop}
+(...)
+\end{prop}
+\begin{proof}
+(...)
+\end{proof}
+
+\begin{prop}
+La taille maximale d'un \emph{2-cap} est 20.
+\end{prop}
+\begin{proof}
+(...)
+\end{proof}
+
+\section{Conclusion}
+
+\bibliographystyle{plain}
+\bibliography{./Ref/davis2003.bib}
+
+\end{document}
