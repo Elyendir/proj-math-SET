@@ -88,8 +88,8 @@ D'après le théorème précédent, après avoir tiré deux cartes la troisième
 De plus, on ne compte pas les permutations possibles des cartes tirées, on a alors $\frac{81 \times 80 \times 1}{3!} = 1080$ sets possibles dans le jeu.
 
 \subsection{Interprétation géométrique des règles}
-Chaque carte est composée de quatre attributs pouvant prendre trois valeurs différentes. On peut alors dire qu'un attribut est représenté par un élément appartenant  à $\mathbb{F}_3$, un corps commutatif fini composé de trois éléments : 0,1,2.
-De plus, une carte possède quatre attributs, il y aura donc quatre dimensions (une pour chaque attribut). Une carte est alors représentée par un point de $\Ftrois{4}$.
+Chaque carte possède quatre attributs pouvant prendre trois valeurs différentes. On peut alors dire qu'un attribut est représenté par un élément appartenant  à $\mathbb{F}_3$, un corps commutatif fini composé de trois éléments : 0,1,2.
+De plus, une carte possède quatre attributs, il y aura donc quatre dimensions (une pour chaque attribut). Une carte est alors représentée par un unique point $(x_1,x_2,x_3,x_4) \in \Ftrois{4}$.
 On peut ainsi poser le tableau suivant :
 
 \begin{center}
@@ -104,7 +104,7 @@ $x_4$: & Forme       & ovale	& vague	  & losange \\
 \end{center}
 
 \begin{ex}
-Le point de coordonnées $(1,0,1,2)$ représente la carte : \frame{\includegraphics[width=0.1\textwidth]{Img/1012.png}}.
+Le point de coordonnées $(1,0,1,2)$ représente la carte : \includegraphics[width=0.1\textwidth]{Img/1012.png}.
 \end{ex}
 
 Sous cette formulation, on obtient la proposition suivante :
@@ -112,17 +112,17 @@ Sous cette formulation, on obtient la proposition suivante :
 Trois cartes forment un set si et seulement si leur point représentatif dans  $\Ftrois{4}$ sont alignés.
 \end{prop}
 \begin{proof}
-Soit $\lambda_1,\lambda_2,\lambda_3 \in \mathbb{F}_3$. On a $\lambda_1 + \lambda_2 + \lambda_3 = 0$ si et seulement si $\lambda_1=\lambda_2=\lambda_3$ ou $\lambda_1,\lambda_2$ et $\lambda_3$ sont tous différents. Pour des points $a,b,c$ appartenant à  $\Ftrois{4}$, on a $a+b+c=0$ signifie que toutes les coordonnées sont soit identiques ou soit différentes.
-Soit $a,b,c$ des points de  $\Ftrois{4}$, on a $a+b+c=0 \iff a-2b+c=0 \iff a-b=b-c$ donc les trois points sont alignés.
+Soit $\lambda_1,\lambda_2,\lambda_3 \in \mathbb{F}_3$. On a $\lambda_1 + \lambda_2 + \lambda_3 = 0$ si et seulement si $\lambda_1=\lambda_2=\lambda_3$ ou $\lambda_1,\lambda_2$ et $\lambda_3$ sont tous différents. Pour des points $a,b,c$ appartenant à  $\Ftrois{4}$, avoir $a+b+c=0$ signifie que toutes les coordonnées sont soit identiques ou soit différentes.
+Pour $a,b,c$ des points de  $\Ftrois{4}$, on a $a+b+c=0 \iff a-2b+c=0 \iff a-b=b-c$ donc les trois points sont alignés.
 \end{proof}
 
 
 \subsection{Taille maximale d'un \emph{cap}}
-\begin{defi}
+\begin{defi}[d-cap]
 On appelle \emph{d-cap} un sous ensemble de  $\Ftrois{d}$ ne contenant pas trois points alignés. \\
 \end{defi}
 Nous nous posons la question : Combien de cartes au minimum doit-on disposer devant soi pour être certain d'avoir un set ?
-Cela revient, entre autre, à chercher la taille maximale d'un 4-cap. D'après l'article A090245 de l'\emph{OEIS}\footnote{L'Encyclopédie en ligne des suites de nombres entiers} la taille maximale d'un 4-cap est 20, il faudra alors disposer au minimum 21 cartes devant soi pour avoir un set.
+Cela revient, entre autre, à chercher la taille maximale d'un 4-cap. D'après la séquence A090245 de l'\emph{OEIS}\footnote{L'Encyclopédie en ligne des suites de nombres entiers} la taille maximale d'un 4-cap est 20, il faudra alors disposer au minimum 21 cartes devant soi pour avoir un set.
 Avant de démontrer ce résultat, nous étudierons des variantes du jeu de SET en considérant, par exemple, une couleur fixée pour toutes les cartes. Autrement dit, nous travaillerons d'abord dans des sous-espaces de  $\Ftrois{4}$.
 
 \subsubsection{Taille maximale d'un \emph{2-cap}}
@@ -143,6 +143,7 @@ Par l'absurde, (...)
 \end{proof}
 
 \subsubsection{Taille maximale d'un \emph{4-cap}}
+Avant de commencer la démonstration, nous aurons besoin de la proposition suivante
 \begin{prop} \label{prop:nbhyp}
 Le nombre d'hyperplans contenant un sous-espace affine fixé de dimensions k dans $\Ftrois{d}$ est égal à :
 \[
@@ -150,7 +151,9 @@ Le nombre d'hyperplans contenant un sous-espace affine fixé de dimensions k dan
 \]
 \end{prop}
 \begin{proof}
-(...)
+Soit S un sous-espace de $\Ftrois{d}$ de dimension k contenant l'origine. On peut dire que S est un sous-espace vectoriel de $\Ftrois{d}$ or $\Ftrois{d}$ est de dimension finie donc S admet un supplémentaire noté $G$ tel que $\Ftrois{d} = S \oplus G$. De plus, l'application qui a chaque vecteur $y\in S$ associe sa classe d'équivalence $y + S$ est un isomorphisme entre $G$ et $\Ftrois{d}/S$. On en déduit qu'on a $\Ftrois{d}/S \simeq G \simeq \Ftrois{{d-k}}$.
+Les hyperplans de $\Ftrois{{d-k}}$ contenant l'origine sont définis par un vecteur normal non nul au nombre de $3^{d-k}-1$. Comme il y a deux vecteurs normaux définissant un plan, il y a donc $\frac{3^{d-k}-1}{2}$ hyperplans contenant l'origine.
+Notons que si le sous espace fixé ne contient pas l'origine, il peut être translaté.
 \end{proof}
 
 \begin{prop}
@@ -169,14 +172,54 @@ Soit $x_{ijk}$ le nombre de triplets d'hyperplans de C. D'après la proposition 
 \[
 \{i,j,k\}=\{9,9,3\},\{9,8,4\},\{9,7,5\},\{9,6,6\},\{8,8,5\},\{8,7,6\},\{7,7,7\}
 \]
-Le nombre de façon de décomposer $\Ftrois{4}$ comme l'union de trois hyperplans parallèles est égal au nombre de droite passant par l'origine, c'est-à-dire égal à $\frac{3^{4}-1}{2}=40$, Donc
-\begin{equation}
+De plus, pour une famille de trois hyperplans parallèles, il existe une unique droite passant par l'origine perpendiculaire à ces trois hyperplans. Le nombre de façon de décomposer $\Ftrois{4}$ comme l'union de trois hyperplans parallèles est alors égal à ce nombre de droites, c'est-à-dire égal à $\frac{3^{4}-1}{2}=40$, donc
+\begin{equation} \label{eq:nbdecomp}
 x_{993} + x_{984} + x_{975} + x_{966} + x_{885} + x_{876} + x_{777} = 40
 \end{equation}
-D'après la proposition \ref{prop:nbhyp}, l
+Pour obtenir une autre équation, nous allons compter le nombre de \emph{2-marked} hyperplans qui sont des paires de la forme $(H,\{x,y\} \subset H \cap C)$ où $H$ est un hyperplan. D'après la proposition \ref{prop:nbhyp}, le nombre d'hyperplans contenant une paire de points \textbf{fixé}, ou une ligne, est égal à $\frac{3^{4-1}-1}{2} = 13$. Il y a donc, $13 \binom{21}{2} = 2730$ \emph{2-marked} hyperplans. Par ailleurs, il y a 
+\[
+\left[\binom{9}{2}+\binom{9}{2}+\binom{3}{2}\right]x_{993} + \dots + \left[\binom{7}{2}+\binom{7}{2}+\binom{7}{2}\right]x_{777}
+\]
+\emph{2-marked} hyperplans. En calculant chacun des coefficients, on a
+\begin{equation} \label{eq:nb2marked}
+75x_{993} + 70x_{984} + 67x_{975} + 66x_{966} + 66x_{885} + 64x_{876} + 63x_{777} = 2730
+\end{equation}
+
+Pour obtenir encore une autre équation en $x_{ijk}$, nous allons compter le nombre de \emph{3-marked} hyperplans qui sont des paires de la forme $(H,\{x,y,z\} \subset H \cap C)$ où $H$ est un hyperplan. D'après la proposition \ref{prop:nbhyp}, le nombre d'hyperplans contenant trois points \textbf{fixé}, ou un plan, est égal à $\frac{3^{4-2}-1}{2} = 4$. Il y a donc, $4 \binom{21}{3} = 5320$ \emph{3-marked} hyperplans. Par ailleurs, il y a 
+\[
+\left[\binom{9}{3}+\binom{9}{3}+\binom{3}{3}\right]x_{993} + \dots + \left[\binom{7}{3}+\binom{7}{3}+\binom{7}{3}\right]x_{777}
+\]
+\emph{3-marked} hyperplans. En calculant chacun des coefficients, on a
+\begin{equation} \label{eq:nb3marked}
+169x_{993} + 144x_{984} + 129x_{975} + 124x_{966} + 122x_{885} + 111x_{876} + 105x_{777} = 5230
+\end{equation}
+Nous pouvons désormais résoudre les équations. Nous nous intéressons qu'aux solutions entières et positives. En ajoutant, 693 fois l'équation (\ref{eq:nbdecomp}) à 3 fois l'équation (\ref{eq:nb3marked}), et en soustrayant 6 fois l'équation (\ref{eq:nb2marked}), on a
+\[
+5x_{984} + 8x_{975} + 9x_{966} + 3x_{885} + 2x_{876} = 0
+\]
+Les uniques solution positives de cette équation sont $x_{984} = x_{975} = x_{966} = x_{885} = x_{876} = 0$. Mais l'équation (\ref{eq:nb2marked}) moins 63 fois l'équation (\ref{eq:nbdecomp}) donne
+\[
+12x_{993} + 7x_{984} + 4x_{975} + 3x_{966} + 3x_{885} + x_{876} = 210
+\]
+Finalement, on obtient $12x_{993} = 210$ qui contredit le fait que $x_{993}$ soit un entier.
 \end{proof}
 
 \section{Conclusion}
+Nous avons vu que le jeu de SET pouvait se ramener à chercher trois points alignés dans $\Ftrois{4}$.
+Parfois, il n'existe pas de set dans les cartes disposées devant soi, on se demandait alors combien de cartes faut il au minimum disposer devant soi pour être certain de trouver un set.
+Pour répondre à cette question nous avons d'abord travaillé dans des sous-espaces vectoriels de $\Ftrois{4}$
+et avons cherché les tailles maximales des \emph{d-cap}. Lors de nos recherches, nous avons trouvé ces résultats
+
+\begin{center}
+\begin{tabular}{ c | c c c c c c c c }
+d & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7\\
+\hline
+taille maximale & 1 & 2 & 4 & 9 & 20 & 45 & 112 & [236,291] \\
+\end{tabular}
+\end{center}
+
+Il faut donc disposer au minimum 21 cartes pour être sûr de trouver un set.
+
 
 \bibliographystyle{plain}
 \bibliography{./Ref/davis2003.bib}
