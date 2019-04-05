@@ -46,6 +46,9 @@ Dans ce sujet, on verra comment interpréter les règles du jeu de SET de maniè
 puis grâce à cette interprétation comment déterminer le nombre de cartes minimal à disposer devant soi pour pouvoir toujours trouver un triplet de cartes.
 \end{abstract}
 
+
+
+
 \section{Présentation du jeu de SET}
 \subsection{Origine}
 Le Jeu de SET a été inventé par Marsha Falco en 1974. L'idée du jeu est venue lorsque Marsha essayait de comprendre si l'épilepsie chez les bergers allemands était héritée. 
@@ -67,7 +70,63 @@ On complète avec trois cartes de la pioche. Si aucun set ne figure parmi les 12
 Le jeu est fini quand toutes les cartes ont été tirées et qu'il n'y a plus de set dans celles qui restent.
 Le gagnant est celui qui a le plus grand nombre de sets. 
 
+\section{Notions mathématique utilisées}
+Avant d'aborder l'aspect mathématique du jeu de set, en particulier l'interprétation géométrique des règles; nous allons expliquer et illustrer les notions de mathématique indispensables à la compréhension de la section suivante. 
 
+\subsection{Le corps fini $\mathbb{F}_3$}
+Le corps commutatif fini $\mathbb{F}_3$ est composé de trois éléments distincts qui sont 0,1 et 2. Il peut s'interpréter comme l'anneau $\mathbb{Z}/3\mathbb{Z}$ correspondant au calcul modulaire sur les restes des entiers dans la division par 3. Un élément de $\mathbb{Z}/3\mathbb{Z}$ est la classe des éléments ayant tous le même reste par la division euclidienne par 3, cet élément est identifié par un membre de sa classe.
+\begin{ex}
+$\bar{2}$ représente la classe contenant les éléments $5,8,11$ etc. Comme il n'y a pas d'ambigüité, 2 désignera aussi cette classe.
+\end{ex}
+
+\begin{rmq}
+Notons que comme 3 est un nombre premier chaque élément non nul de $\mathbb{F}_3$ est inversible, c'est l'inverse modulaire. L'inverse modulaire d'un entier relatif $a$ pour la multiplication modulo $n$ est un entier $u$ satisfaisant l'équation $au \equiv 1 \pmod{n}$.
+\end{rmq}
+
+Les lois $(+,\times)$ sont les mêmes que sur $\mathbb{Z}$ mais modulo 3.
+\begin{center}
+\begin{tabular}{ l | c c c }
++ & 0 & 1 & 2 \\
+\hline
+0 & 0 & 1 & 2\\
+1 & 1 & 2 & 0\\
+2 & 2 & 0 & 1\\
+\end{tabular}
+\qquad
+\begin{tabular}{ l | c c c }
+$\times$ & 0 & 1 & 2 \\
+\hline
+0 & 0 & 0 & 0\\
+1 & 0 & 1 & 2\\
+2 & 0 & 2 & 1\\
+\end{tabular}
+\end{center}
+\subsubsection{Considérations graphiques}
+\'{E}tant donné que nous sommes modulo 3, le plan $\Ftrois{2}$ se comporte comme un tore.
+
+GRAPHIQUE
+
+\subsection{Relation d'équivalence et classe d'équivalence}
+\subsubsection{Relation d'équivalence}
+La relation d'équivalence permet, dans un ensemble, de mettre en relation des éléments qui sont similaires par une certaine propriété.
+\begin{defi}
+Une relation d'équivalence sur un ensemble E est une relation binaire $\sim$ sur E qui est à la fois réflexive, symétrique et transitive.
+\end{defi}
+\begin{ex}
+Dans $\mathbb{Z}/3\mathbb{Z}$ la relation d'équivalence correspond à la congruence sur les entiers. On vérifie aisément que la congruence est réflexive, symétrique et transitive.
+\end{ex}
+\subsubsection{Classe d'équivalence}
+Grâce à la relation d'équivalence, on peut regrouper des éléments équivalents, similaires ensembles, on définit ainsi la notion de classe d'équivalence.
+\begin{defi}
+On définit la classe d'équivalence [x] d'un élément $x$ de $E$ comme l'ensemble des $y$ de $E$ tels que $x \sim  y$, autrement dit, on a $y \in [x] \Leftrightarrow x \sim  y$.
+\end{defi}
+On appelle représentant de [x] n'importe quel élément de [x]. On a par ailleurs $x \sim  y \Leftrightarrow  [y] = [x]$.
+\begin{ex}
+-1, 2, 5, etc sont des représentants de $[2]=\{x \equiv 2 \pmod{3}~|~x \in \mathbb{Z}\}$.
+\end{ex}
+
+\subsection{Espace vectoriel quotient}
+\subsection{Espace affine}
 \section{Aspect Mathématique}
 \subsection{Combinatoire}
 
@@ -119,19 +178,36 @@ Pour $a,b,c$ des points de  $\Ftrois{4}$, on a $a+b+c=0 \iff a-2b+c=0 \iff a-b=b
 
 \subsection{Taille maximale d'un \emph{cap}}
 \begin{defi}[d-cap]
-On appelle \emph{d-cap} un sous ensemble de  $\Ftrois{d}$ ne contenant pas trois points alignés. \\
+On appelle \emph{d-cap} un sous-espace de  $\Ftrois{d}$ ne contenant pas trois points alignés. \\
 \end{defi}
 Nous nous posons la question : Combien de cartes au minimum doit-on disposer devant soi pour être certain d'avoir un set ?
 Cela revient, entre autre, à chercher la taille maximale d'un 4-cap. D'après la séquence A090245 de l'\emph{OEIS}\footnote{L'Encyclopédie en ligne des suites de nombres entiers} la taille maximale d'un 4-cap est 20, il faudra alors disposer au minimum 21 cartes devant soi pour avoir un set.
 Avant de démontrer ce résultat, nous étudierons des variantes du jeu de SET en considérant, par exemple, une couleur fixée pour toutes les cartes. Autrement dit, nous travaillerons d'abord dans des sous-espaces de  $\Ftrois{4}$.
 
 \subsubsection{Taille maximale d'un \emph{2-cap}}
-\begin{prop}
+\begin{prop} \label{prop:2cap}
 La taille maximale d'un \emph{2-cap} est 4.
 \end{prop}
-\begin{proof}
-Par l'absurde, supposons l'existence d'un \emph{2-cap} contenant 5 points $x_1,x_2,x_3,x_4,x_5$.
-Le plan  $\Ftrois{2}$ peut être décomposé comme l'union de trois droites parallèles tel qu'une droite contienne au plus deux points.  (...)
+\begin{proof}  
+Par l'absurde, supposons qu'il existe un 2-cap représenté avec 5 points que l'on note $x_1,x_2,x_3,x_4,x_5$. Le plan $\mathbb{F}_3^d$ peut être décomposé en unissant trois lignes parallèles horizontales. La figure \ref{fig:F32decomp} représente cette décomposition.
+
+\begin{figure}[h!] \label{fig:F32decomp}
+\centering
+\includegraphics[width=0.5\textwidth]{Img/FigProp1v2.jpg}
+\caption{Décomposition de $\Ftrois{2}$ comme l'union de trois droites horizontales parallèles}
+\end{figure}
+
+Chaque ligne contient au plus 2 points, par conséquent il existe deux lignes horizontales contenant chacune deux points du cap et une autre ligne, notée $H$, qui contient exactement un point qui sera le point $x_5$. Finalement, il y a exactement 4 lignes contenant le point $x_5$, que nous notons $L_1,L_2,L_3,H$. %La figure ci-dessous représente ces 4 lignes.
+
+\begin{figure}[h!] %\label{fig:F32decomp}
+\centering
+\includegraphics[width=0.5\textwidth]{Img/Fig2Prop1.jpg}
+\caption{Les quatre lignes contenant le point $x_5$}
+\end{figure}
+    
+Or la ligne $H$ ne contient aucun des points $x_1$ à $x_4$ donc selon le principe des tiroirs, il y a deux de ces points noté $x_r$ et $x_s$ qui se trouvent sur une ligne $L_i$ où $1\le i \le 3$.
+Cela montre que la ligne $L_i$ contient les points $x_5, x_r, x_s$ formant donc un SET et cela contredit l'hypothèse de départ car un 2-cap est un sous espaces affine de $\mathbb{F}_3^2$ qui ne contient pas de points alignés (colinéaire).
+%Lien vers le Wikipedia du principes des tiroirs :\\ \verb|https://fr.wikipedia.org/wiki/Principe_des_tiroirs|.   
 \end{proof}
 
 \subsubsection{Taille maximale d'un \emph{3-cap}}
@@ -139,7 +215,13 @@ Le plan  $\Ftrois{2}$ peut être décomposé comme l'union de trois droites para
 La taille maximale d'un \emph{3-cap} est 9.
 \end{prop}
 \begin{proof}
-Par l'absurde, (...)
+Par l'absurde, supposons qu'il existe un 3-cap avec dix points. L'espace $\Ftrois{3}$ peut être décomposé comme l'union de trois plans parallèles.
+
+Puisque l'intersection de n'importe quel plan avec le 3-cap est un 2-cap, la proposition \ref{prop:2cap} implique qu'aucun plan ne peut contenir plus de quatre points du cap. Cela signifie que le plan contenant le plus petit nombre de points doit contenir deux ou trois points, car s'il contenait quatre points, nous aurions besoin d'un total de douze points, et pour un point ou zéro cela signifierait au plus neuf points. Appelons  ce plan H, et notons qu’il y a au moins sept points du cap, $x_1,\dots ,x_7$, non contenu dans H.
+    
+Soient a et b deux points du cap sur le plan H. Il existe exactement quatre plans dans l'espace $\Ftrois{3}$ contenant à la fois a et b, que l'on désigne par $H, M_1, M_2, M_3$. Puisque H ne contient pas les points $x_1,\dots ,x_7$, selon le principe des tiroirs, l'un des plans $M_i$ doit contenir trois de ces points $x_r, x_s, x_t$. Cela montre que le plan $M_i$ contient un total de cinq points du cap, ce qui contredit la proposition \ref{prop:2cap}.
+    
+Malheureusement, cette méthode n'est pas assez puissante pour prouver que la taille maximale d'un \emph{4-cap} est 20.
 \end{proof}
 
 \subsubsection{Taille maximale d'un \emph{4-cap}}
@@ -151,9 +233,14 @@ Le nombre d'hyperplans contenant un sous-espace affine fixé de dimensions k dan
 \]
 \end{prop}
 \begin{proof}
-Soit S un sous-espace de $\Ftrois{d}$ de dimension k contenant l'origine. On peut dire que S est un sous-espace vectoriel de $\Ftrois{d}$ or $\Ftrois{d}$ est de dimension finie donc S admet un supplémentaire noté $G$ tel que $\Ftrois{d} = S \oplus G$. De plus, l'application qui a chaque vecteur $y\in S$ associe sa classe d'équivalence $y + S$ est un isomorphisme entre $G$ et $\Ftrois{d}/S$. On en déduit qu'on a $\Ftrois{d}/S \simeq G \simeq \Ftrois{{d-k}}$.
+Soit S un sous-espace de $\Ftrois{d}$ de dimension k contenant l'origine. On peut dire que S est un sous-espace vectoriel de $\Ftrois{d}$ or $\Ftrois{d}$ est de dimension finie donc S admet un supplémentaire noté $G$ tel que $\Ftrois{d} = S \oplus G$.
+
+L'application qui a chaque vecteur $y\in S$ associe sa classe d'équivalence $y + S$ est un isomorphisme entre $G$ et $\Ftrois{d}/S$. On en déduit qu'on a $\Ftrois{d}/S \simeq G \simeq \Ftrois{{d-k}}$.
+
 Les hyperplans de $\Ftrois{{d-k}}$ contenant l'origine sont définis par un vecteur normal non nul au nombre de $3^{d-k}-1$. Comme il y a deux vecteurs normaux définissant un plan, il y a donc $\frac{3^{d-k}-1}{2}$ hyperplans contenant l'origine.
+\begin{rmq}
 Notons que si le sous espace fixé ne contient pas l'origine, il peut être translaté.
+\end{rmq}
 \end{proof}
 
 \begin{prop}
@@ -211,7 +298,7 @@ Pour répondre à cette question nous avons d'abord travaillé dans des sous-esp
 et avons cherché les tailles maximales des \emph{d-cap}. Lors de nos recherches, nous avons trouvé ces résultats
 
 \begin{center}
-\begin{tabular}{ c | c c c c c c c c }
+\begin{tabular}{ l | *{8}{c} }
 d & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7\\
 \hline
 taille maximale & 1 & 2 & 4 & 9 & 20 & 45 & 112 & [236,291] \\
@@ -219,7 +306,6 @@ taille maximale & 1 & 2 & 4 & 9 & 20 & 45 & 112 & [236,291] \\
 \end{center}
 
 Il faut donc disposer au minimum 21 cartes pour être sûr de trouver un set.
-
 
 \bibliographystyle{plain}
 \bibliography{./Ref/davis2003.bib}
