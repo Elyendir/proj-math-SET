@@ -10,7 +10,7 @@
 \usepackage{amssymb}
 \usepackage{graphicx}
 \usepackage{hyperref}
-\usepackage{wrapfig}
+%\usepackage{wrapfig}
 %% quelques définitions
 \theoremstyle{plain}
 \newtheorem{thm}{Théorème}
@@ -19,22 +19,22 @@
 \newtheorem{prop}{Proposition}
 \newtheorem{dem}{Démonstration}
 
-%raccourci
-\newcommand{\Ftrois}[1]{\mathbb{F}^#1_3}
-%\newcommand{\F}[1]{\mathbb{F}^#1_3}
-
 \theoremstyle{definition}
 \newtheorem{defi}{Définition}
 \newtheorem{rmq}{Remarque}
 \newtheorem{ex}{Exemple}
 \newtheorem{exo}{exercice}
 
+%raccourci
+\newcommand{\Ftrois}[1]{\mathbb{F}^#1_3}
+
+
 \title{Projet de mathématiques \\
 		\large Interprétation géométrique des règles du jeu de SET}
 \author{Nathan C. \and Romain B.}
-%\date{}
+\date{}
 
-%% on commence
+
 \begin{document}
 
 \maketitle
@@ -47,11 +47,9 @@ puis grâce à cette interprétation comment déterminer le nombre de cartes min
 \end{abstract}
 
 
-
-
 \section{Présentation du jeu de SET}
 \subsection{Origine}
-Le Jeu de SET a été inventé par Marsha Falco en 1974. L'idée du jeu est venue lorsque Marsha essayait de comprendre si l'épilepsie chez les bergers allemands était héritée. 
+Le Jeu de SET a été inventé par Marsha Falco en 1974. L'idée du jeu est venue lorsque Marsha essayait de comprendre si l'épilepsie chez les bergers allemands était héréditaire. 
 Elle représentait les données génétiques des chiens sous la forme de symboles en dessinant sur des fiches. 
 Marsha a constaté qu'il était amusant de trouver les différentes combinaisons et SET est né. Au fil des années, Marsha a perfectionné le jeu en jouant avec sa famille et ses amis. 
 Il a finalement été lancé en 1990.
@@ -63,6 +61,27 @@ Chaque joueur doit trouver le maximum de sets. Un set est composé de trois cart
 \item soit totalement différentes (par exemple chacune des trois cartes est d'une couleur différente).
 \end{itemize}
 
+\begin{table}[h]
+\centering
+\begin{tabular}{ c | c | c | c }
+\includegraphics[scale=0.2]{Img/1012.png} &
+\includegraphics[scale=0.2]{Img/0202.png} &
+\includegraphics[scale=0.2]{Img/1101.png} &
+\includegraphics[scale=0.2]{Img/2000.png} \\
+\hline
+\includegraphics[scale=0.2]{Img/2200.png} &
+\includegraphics[scale=0.2]{Img/0012.png} &
+\includegraphics[scale=0.2]{Img/1121.png} &
+\includegraphics[scale=0.2]{Img/0010.png} \\
+\hline
+\includegraphics[scale=0.2]{Img/0121.png} &
+\includegraphics[scale=0.2]{Img/0122.png} &
+\includegraphics[scale=0.2]{Img/2012.png} &
+\includegraphics[scale=0.2]{Img/1011.png} \\
+\end{tabular}
+\caption{Avez-vous trouvé les 7 sets?}
+\end{table}
+
 \subsection{Règles}
 Le jeu commence en disposant douze cartes devant les joueurs.
 Le premier joueur qui voit un set prend les trois cartes et les garde dans sa pile de gain. 
@@ -70,8 +89,9 @@ On complète avec trois cartes de la pioche. Si aucun set ne figure parmi les 12
 Le jeu est fini quand toutes les cartes ont été tirées et qu'il n'y a plus de set dans celles qui restent.
 Le gagnant est celui qui a le plus grand nombre de sets. 
 
-\section{Notions mathématique utilisées}
-Avant d'aborder l'aspect mathématique du jeu de set, en particulier l'interprétation géométrique des règles; nous allons expliquer et illustrer les notions de mathématique indispensables à la compréhension de la section suivante. 
+\newpage
+\section{Notions mathématiques utilisées}
+Avant d'aborder l'aspect mathématiques du jeu de set, en particulier l'interprétation géométrique des règles; nous allons expliquer et illustrer les notions mathématiques indispensables à la compréhension de la section suivante. 
 
 \subsection{Le corps fini $\mathbb{F}_3$}
 Le corps commutatif fini $\mathbb{F}_3$ est composé de trois éléments distincts qui sont 0,1 et 2. Il peut s'interpréter comme l'anneau $\mathbb{Z}/3\mathbb{Z}$ correspondant au calcul modulaire sur les restes des entiers dans la division par 3. Un élément de $\mathbb{Z}/3\mathbb{Z}$ est la classe des éléments ayant tous le même reste par la division euclidienne par 3, cet élément est identifié par un membre de sa classe.
@@ -80,7 +100,7 @@ $\bar{2}$ représente la classe contenant les éléments $5,8,11$ etc. Comme il 
 \end{ex}
 
 \begin{rmq}
-Notons que comme 3 est un nombre premier chaque élément non nul de $\mathbb{F}_3$ est inversible, c'est l'inverse modulaire. L'inverse modulaire d'un entier relatif $a$ pour la multiplication modulo $n$ est un entier $u$ satisfaisant l'équation $au \equiv 1 \pmod{n}$.
+Comme 3 est un nombre premier chaque élément non nul de $\mathbb{F}_3$ est inversible, c'est l'inverse modulaire. L'inverse modulaire d'un entier relatif $a$ pour la multiplication modulo $n$ est un entier $u$ satisfaisant l'équation $au \equiv 1 \pmod{n}$.
 \end{rmq}
 
 Les lois $(+,\times)$ sont les mêmes que sur $\mathbb{Z}$ mais modulo 3.
@@ -105,6 +125,16 @@ $\times$ & 0 & 1 & 2 \\
 \'{E}tant donné que nous sommes modulo 3, le plan $\Ftrois{2}$ se comporte comme un tore.
 
 GRAPHIQUE
+\subsection{Principe des tiroirs}
+Le principe des tiroirs, ou encore le principe des pigeons (en anglais : pigeonhole principle) qui peut paraître trivial mais qui a son importance dans ce sujet.
+L’idée est simple : on place $n$ chaussettes dans $m$ tiroirs, et si $n>m$ alors il y a au moins un tiroir qui doit contenir strictement plus d’une chaussette.
+
+On peut énoncer ce principe autrement : 
+\begin{defi}
+Si $E$ et $F$ sont deux ensembles finis tels que $|E|>|F|$ et si $f:E \to F$ est une application alors il existe un élément de $F$ qui admet au moins deux
+antécédents par $f$. 
+Il n’existe donc pas d’application injective de $E$ dans $F$.
+\end{defi}
 
 \subsection{Relation d'équivalence et classe d'équivalence}
 \subsubsection{Relation d'équivalence}
@@ -116,18 +146,38 @@ Une relation d'équivalence sur un ensemble E est une relation binaire $\sim$ su
 Dans $\mathbb{Z}/3\mathbb{Z}$ la relation d'équivalence correspond à la congruence sur les entiers. On vérifie aisément que la congruence est réflexive, symétrique et transitive.
 \end{ex}
 \subsubsection{Classe d'équivalence}
-Grâce à la relation d'équivalence, on peut regrouper des éléments équivalents, similaires ensembles, on définit ainsi la notion de classe d'équivalence.
+Grâce à la relation d'équivalence, on peut regrouper des éléments équivalents, similaires ensembles; on définit ainsi la notion de classe d'équivalence.
 \begin{defi}
 On définit la classe d'équivalence [x] d'un élément $x$ de $E$ comme l'ensemble des $y$ de $E$ tels que $x \sim  y$, autrement dit, on a $y \in [x] \Leftrightarrow x \sim  y$.
 \end{defi}
-On appelle représentant de [x] n'importe quel élément de [x]. On a par ailleurs $x \sim  y \Leftrightarrow  [y] = [x]$.
+\noindent On appelle représentant de [x] n'importe quel élément de [x]. On a par ailleurs $x \sim  y \Leftrightarrow  [y] = [x]$.
 \begin{ex}
--1, 2, 5, etc sont des représentants de $[2]=\{x \equiv 2 \pmod{3}~|~x \in \mathbb{Z}\}$.
+-1, 2, 5, etc sont des représentants de $[2] = \{x \equiv 2 \pmod{3}|x~\in~\mathbb{Z}\}$.
+\end{ex}
+\subsection{Espace affine}
+\begin{defi}
+Un ensemble $\mathcal{E}$ est un espace affine s'il existe un espace vectoriel E et une application de $\mathcal{E} \times E$ dans $\mathcal{E}$ qui au point $A$ et au vecteur $\overrightarrow{u}$ associe un point de $\mathcal{E}$ noté $A+\overrightarrow{u}$ vérifiant
+
+\begin{enumerate}
+\item $ \forall A \in \mathcal{E},~\forall \overrightarrow{u},\overrightarrow{v} \in E,~(A+\overrightarrow{u})+\overrightarrow{v}=A+(\overrightarrow{u}+\overrightarrow{v})$
+\item $ \forall (A,B) \in \mathcal{E}^2,~\exists!\overrightarrow{u} \in E,~ A+\overrightarrow{u}=B$
+\end{enumerate}
+L'espace vectoriel E s'appelle alors la direction de l'espace affine $\mathcal{E}$.
+\end{defi}
+
+\begin{rmq}
+Un espace affine peut être vu comme un espace vectoriel dont on a oublié l'origine.
+\end{rmq}
+\begin{ex}
+Dans $\mathbb{R}^2$ les droites passant par l'origine sont des espaces vectoriels. Les autres droites sont des sous-espaces affines. 
 \end{ex}
 
+\subsubsection{Sous-espace affine}
+
 \subsection{Espace vectoriel quotient}
-\subsection{Espace affine}
-\section{Aspect Mathématique}
+
+\newpage
+\section{Aspect Mathématiques}
 \subsection{Combinatoire}
 
 \paragraph{Nombre de cartes} Chaque carte du jeu de SET est unique, en effet une carte représente une combinaison de quatre attributs, chacun des attributs pouvant prendre trois valeurs. 
@@ -139,7 +189,7 @@ Il y a donc $3^4=81$ cartes dans le jeu de SET.
 Pour deux cartes, il y a exactement une carte qui complète ces deux cartes en un set.
 \end{thm}
 \begin{proof}
-Par définition, si les deux cartes ont la même forme alors la troisième carte a cette forme sinon les deux cartes n'ont pas la même forme alors la troisième carte a une forme différentes des deux autres. On cherche ainsi une carte vérifiant cette condition pour la forme et pour les autres attributs.
+Par définition, si les deux cartes ont la même forme alors la troisième carte a cette forme sinon les deux cartes n'ont pas la même forme alors la troisième carte a une forme différente des deux autres. On cherche ainsi une carte vérifiant cette condition pour la forme et pour les autres attributs.
 \end{proof}
 D'après le théorème précédent, après avoir tiré deux cartes la troisième existe parmi les 79 cartes restantes. On en déduit qu'on a une probabilité de 1/79 d'obtenir un set en tirant 3 cartes aléatoirement.
 
@@ -166,7 +216,7 @@ $x_4$: & Forme       & ovale	& vague	  & losange \\
 Le point de coordonnées $(1,0,1,2)$ représente la carte : \includegraphics[width=0.1\textwidth]{Img/1012.png}.
 \end{ex}
 
-Sous cette formulation, on obtient la proposition suivante :
+\noindent Sous cette formulation, on obtient la proposition suivante :
 \begin{prop}
 Trois cartes forment un set si et seulement si leur point représentatif dans  $\Ftrois{4}$ sont alignés.
 \end{prop}
@@ -178,7 +228,7 @@ Pour $a,b,c$ des points de  $\Ftrois{4}$, on a $a+b+c=0 \iff a-2b+c=0 \iff a-b=b
 
 \subsection{Taille maximale d'un \emph{cap}}
 \begin{defi}[d-cap]
-On appelle \emph{d-cap} un sous-espace de  $\Ftrois{d}$ ne contenant pas trois points alignés. \\
+On appelle \emph{d-cap} un sous-ensemble de  $\Ftrois{d}$ ne contenant pas trois points alignés.
 \end{defi}
 Nous nous posons la question : Combien de cartes au minimum doit-on disposer devant soi pour être certain d'avoir un set ?
 Cela revient, entre autre, à chercher la taille maximale d'un 4-cap. D'après la séquence A090245 de l'\emph{OEIS}\footnote{L'Encyclopédie en ligne des suites de nombres entiers} la taille maximale d'un 4-cap est 20, il faudra alors disposer au minimum 21 cartes devant soi pour avoir un set.
@@ -189,11 +239,12 @@ Avant de démontrer ce résultat, nous étudierons des variantes du jeu de SET e
 La taille maximale d'un \emph{2-cap} est 4.
 \end{prop}
 \begin{proof}  
-Par l'absurde, supposons qu'il existe un 2-cap représenté avec 5 points que l'on note $x_1,x_2,x_3,x_4,x_5$. Le plan $\mathbb{F}_3^d$ peut être décomposé en unissant trois lignes parallèles horizontales. La figure \ref{fig:F32decomp} représente cette décomposition.
+Par l'absurde, supposons qu'il existe un 2-cap représenté avec 5 points que l'on note $x_1,x_2,x_3,x_4,x_5$. Le plan $\mathbb{F}_3^d$ peut être décomposé comme l'union de trois lignes parallèles horizontales.
+%La figure \ref{fig:F32decomp} représente cette décomposition.
 
-\begin{figure}[h!] \label{fig:F32decomp}
+\begin{figure}[h!] %\label{fig:F32decomp}
 \centering
-\includegraphics[width=0.5\textwidth]{Img/FigProp1v2.jpg}
+\includegraphics[scale=0.4]{Img/FigProp1v2.jpg}
 \caption{Décomposition de $\Ftrois{2}$ comme l'union de trois droites horizontales parallèles}
 \end{figure}
 
@@ -201,7 +252,7 @@ Chaque ligne contient au plus 2 points, par conséquent il existe deux lignes ho
 
 \begin{figure}[h!] %\label{fig:F32decomp}
 \centering
-\includegraphics[width=0.5\textwidth]{Img/Fig2Prop1.jpg}
+\includegraphics[scale=0.4]{Img/Fig2Prop1.jpg}
 \caption{Les quatre lignes contenant le point $x_5$}
 \end{figure}
     
@@ -284,7 +335,7 @@ Nous pouvons désormais résoudre les équations. Nous nous intéressons qu'aux 
 \[
 5x_{984} + 8x_{975} + 9x_{966} + 3x_{885} + 2x_{876} = 0
 \]
-Les uniques solution positives de cette équation sont $x_{984} = x_{975} = x_{966} = x_{885} = x_{876} = 0$. Mais l'équation (\ref{eq:nb2marked}) moins 63 fois l'équation (\ref{eq:nbdecomp}) donne
+Les uniques solutions positives de cette équation sont $x_{984} = x_{975} = x_{966} = x_{885} = x_{876} = 0$. Mais l'équation (\ref{eq:nb2marked}) moins 63 fois l'équation (\ref{eq:nbdecomp}) donne
 \[
 12x_{993} + 7x_{984} + 4x_{975} + 3x_{966} + 3x_{885} + x_{876} = 210
 \]
