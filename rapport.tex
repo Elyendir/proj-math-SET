@@ -1,6 +1,6 @@
 \documentclass[a4paper,12pt,titlepage]{article}
 
-%% On charge quelques paquets
+% On charge quelques paquets
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[french]{babel}
@@ -11,7 +11,8 @@
 \usepackage{graphicx}
 \usepackage{hyperref}
 %\usepackage{wrapfig}
-%% quelques définitions
+
+% quelques définitions
 \theoremstyle{plain}
 \newtheorem{thm}{Théorème}
 \newtheorem{cor}[thm]{Corollaire}
@@ -28,7 +29,7 @@
 %raccourci
 \newcommand{\Ftrois}[1]{\mathbb{F}^#1_3}
 
-
+% titre
 \title{Projet de mathématiques \\
 		\large Interprétation géométrique des règles du jeu de SET}
 \author{Nathan C. \and Romain B.}
@@ -41,6 +42,7 @@
 \tableofcontents
 \newpage
 
+%résumé du projet
 \begin{abstract}
 Dans ce sujet, on verra comment interpréter les règles du jeu de SET de manière géométrique, 
 puis grâce à cette interprétation comment déterminer le nombre de cartes minimal à disposer devant soi pour pouvoir toujours trouver un triplet de cartes.
@@ -96,7 +98,7 @@ Avant d'aborder l'aspect mathématiques du jeu de set, en particulier l'interpr�
 \subsection{Le corps fini $\mathbb{F}_3$}
 Le corps commutatif fini $\mathbb{F}_3$ est composé de trois éléments distincts qui sont 0,1 et 2. Il peut s'interpréter comme l'anneau $\mathbb{Z}/3\mathbb{Z}$ correspondant au calcul modulaire sur les restes des entiers dans la division par 3. Un élément de $\mathbb{Z}/3\mathbb{Z}$ est la classe des éléments ayant tous le même reste par la division euclidienne par 3, cet élément est identifié par un membre de sa classe.
 \begin{ex}
-$\bar{2}$ représente la classe contenant les éléments $5,8,11$ etc. Comme il n'y a pas d'ambigüité, 2 désignera aussi cette classe.
+$\bar{2}$ représente la classe contenant les éléments $2,5,8,11$ etc. Comme il n'y a pas d'ambigüité, 2 désignera aussi cette classe.
 \end{ex}
 
 \begin{rmq}
@@ -123,8 +125,7 @@ $\times$ & 0 & 1 & 2 \\
 \end{center}
 \subsubsection{Considérations graphiques}
 \'{E}tant donné que nous sommes modulo 3, le plan $\Ftrois{2}$ se comporte comme un tore.
-
-GRAPHIQUE
+Ce comportement reste valable aux dimensions supérieures.
 \subsection{Principe des tiroirs}
 Le principe des tiroirs, ou encore le principe des pigeons (en anglais : pigeonhole principle) qui peut paraître trivial mais qui a son importance dans ce sujet.
 L’idée est simple : on place $n$ chaussettes dans $m$ tiroirs, et si $n>m$ alors il y a au moins un tiroir qui doit contenir strictement plus d’une chaussette.
@@ -152,15 +153,16 @@ On définit la classe d'équivalence [x] d'un élément $x$ de $E$ comme l'ensem
 \end{defi}
 \noindent On appelle représentant de [x] n'importe quel élément de [x]. On a par ailleurs $x \sim  y \Leftrightarrow  [y] = [x]$.
 \begin{ex}
--1, 2, 5, etc sont des représentants de $[2] = \{x \equiv 2 \pmod{3}|x~\in~\mathbb{Z}\}$.
+Dans $\mathbb{Z}/3\mathbb{Z}$, -1, 2, 5, etc sont des représentants de $[2] = \{x \equiv 2 \pmod{3}|x~\in~\mathbb{Z}\}$.
 \end{ex}
+
 \subsection{Espace affine}
 \begin{defi}
-Un ensemble $\mathcal{E}$ est un espace affine s'il existe un espace vectoriel E et une application de $\mathcal{E} \times E$ dans $\mathcal{E}$ qui au point $A$ et au vecteur $\overrightarrow{u}$ associe un point de $\mathcal{E}$ noté $A+\overrightarrow{u}$ vérifiant
+Un ensemble $E$ est un espace affine s'il existe un espace vectoriel $V$ et une application de $E \times V$ dans $E$ qui au point $A$ et au vecteur $\overrightarrow{u}$ associe un point de $E$ noté $A+\overrightarrow{u}$ vérifiant
 
 \begin{enumerate}
-\item $ \forall A \in \mathcal{E},~\forall \overrightarrow{u},\overrightarrow{v} \in E,~(A+\overrightarrow{u})+\overrightarrow{v}=A+(\overrightarrow{u}+\overrightarrow{v})$
-\item $ \forall (A,B) \in \mathcal{E}^2,~\exists!\overrightarrow{u} \in E,~ A+\overrightarrow{u}=B$
+\item $ \forall A \in E,~\forall \overrightarrow{u},\overrightarrow{v} \in V,~(A+\overrightarrow{u})+\overrightarrow{v}=A+(\overrightarrow{u}+\overrightarrow{v})$
+\item $ \forall (A,B) \in E^2,~\exists!\overrightarrow{u} \in V,~ A+\overrightarrow{u}=B$
 \end{enumerate}
 L'espace vectoriel E s'appelle alors la direction de l'espace affine $\mathcal{E}$.
 \end{defi}
@@ -173,9 +175,16 @@ Dans $\mathbb{R}^2$ les droites passant par l'origine sont des espaces vectoriel
 \end{ex}
 
 \subsubsection{Sous-espace affine}
-
+Soit $E$ un espace affine de direction $V$.
+Une partie $F$ de $E$ est un sous-espace affine de $E$, s'il est vide ou il existe un point $A$ de $F$ tel que l'ensemble $W = \{ \overrightarrow{AM}~|~M \in F \}$ est un sous-espace vectoriel de $V$.
 \subsection{Espace vectoriel quotient}
 
+Nous savons déjà que si $F$ est un sous-espace vectoriel de $E$ et $E$ de dimension finie alors $F$ admet un supplémentaire $G$ tel que $E = F \oplus G$. Il n'y a pas de façon "naturelle" de choisir ce supplémentaire. En revanche, il existe une construction naturelle associant $F$ et $E$ qui est un supplémentaire de $F$.
+\subsubsection{Construction}
+Soit $E$ un espace vectoriel et $F$ un sous-espace vectoriel de $E$. On définit la relation d'équivalence $\sim$ sur $E$ tel que $x \sim y$ si $x - y \in F$ où $(x,y)\in E^2$. On a alors la classe d'équivalence de $x$ définit tel que $[x] = \{x + u~|~u \in F\}$ ($u$ parcourt $F$ mais $x$ reste fixé). L'ensemble de ces classes d'équivalences est appelé \emph{l'espace vectoriel quotient de $E$ modulo $F$} noté $E/F$.
+\subsubsection{Exemple}
+Soit $E = \mathbb{R}^2$ le plan cartésien et $F$ une ligne passant par l'origine.
+L'espace vectoriel quotient $E/F$ peut être représenté comme l'ensemble des lignes dans $E$ parallèles à $F$.
 \newpage
 \section{Aspect Mathématiques}
 \subsection{Combinatoire}
@@ -349,16 +358,17 @@ Pour répondre à cette question nous avons d'abord travaillé dans des sous-esp
 et avons cherché les tailles maximales des \emph{d-cap}. Lors de nos recherches, nous avons trouvé ces résultats
 
 \begin{center}
-\begin{tabular}{ l | *{8}{c} }
-d & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7\\
+\begin{tabular}{ l | *{7}{c} }
+d & 0 & 1 & 2 & 3 & 4 & 5 & 6\\
 \hline
-taille maximale & 1 & 2 & 4 & 9 & 20 & 45 & 112 & [236,291] \\
+taille maximale & 1 & 2 & 4 & 9 & 20 & 45 & 112 \\
 \end{tabular}
 \end{center}
 
 Il faut donc disposer au minimum 21 cartes pour être sûr de trouver un set.
 
+\bibliography{Ref/set}
 \bibliographystyle{plain}
-\bibliography{./Ref/davis2003.bib}
+\nocite{*}
 
 \end{document}
