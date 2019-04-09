@@ -81,7 +81,7 @@ Chaque joueur doit trouver le maximum de sets. Un set est composé de trois cart
 \includegraphics[scale=0.2]{Img/2012.png} &
 \includegraphics[scale=0.2]{Img/1011.png} \\
 \end{tabular}
-\caption{Avez-vous trouvé les 7 sets?}
+\caption{Avez-vous trouvé les 8 sets?}
 \end{table}
 
 \subsection{Règles}
@@ -235,12 +235,16 @@ Pour $a,b,c$ des points de  $\Ftrois{4}$, on a $a+b+c=0 \iff a-2b+c=0 \iff a-b=b
 \end{proof}
 
 
-\subsection{Taille maximale d'un \emph{cap}}
+\subsection{Taille maximale d'un \emph{d-cap}}
 \begin{defi}[d-cap]
 On appelle \emph{d-cap} un sous-ensemble de  $\Ftrois{d}$ ne contenant pas trois points alignés.
 \end{defi}
+\begin{defi}[Taille maximale d'un d-cap]
+La taille maximale d'un \emph{d-cap} est le nombre maximum de points que l'on peut placer tel qu'aucune droite ne passe par trois points.
+\end{defi}
 Nous nous posons la question : Combien de cartes au minimum doit-on disposer devant soi pour être certain d'avoir un set ?
-Cela revient, entre autre, à chercher la taille maximale d'un 4-cap. D'après la séquence A090245 de l'\emph{OEIS}\footnote{L'Encyclopédie en ligne des suites de nombres entiers} la taille maximale d'un 4-cap est 20, il faudra alors disposer au minimum 21 cartes devant soi pour avoir un set.
+Cela revient, entre autre, à chercher la taille maximale d'un 4-cap. D'après la séquence A090245 de l'\emph{OEIS}\footnote{L'Encyclopédie en ligne des suites de nombres entiers} la taille maximale d'un 4-cap est 20, il faudra alors disposer au minimum 21 cartes devant soi pour avoir au moins un set.
+
 Avant de démontrer ce résultat, nous étudierons des variantes du jeu de SET en considérant, par exemple, une couleur fixée pour toutes les cartes. Autrement dit, nous travaillerons d'abord dans des sous-espaces de  $\Ftrois{4}$.
 
 \subsubsection{Taille maximale d'un \emph{2-cap}}
@@ -248,7 +252,7 @@ Avant de démontrer ce résultat, nous étudierons des variantes du jeu de SET e
 La taille maximale d'un \emph{2-cap} est 4.
 \end{prop}
 \begin{proof}  
-Par l'absurde, supposons qu'il existe un 2-cap représenté avec 5 points que l'on note $x_1,x_2,x_3,x_4,x_5$. Le plan $\mathbb{F}_3^d$ peut être décomposé comme l'union de trois lignes parallèles horizontales.
+Par l'absurde, supposons qu'il existe un 2-cap représenté avec 5 points que l'on note $x_1,x_2,x_3,x_4,x_5$. Le plan $\Ftrois{2}$ peut être décomposé comme l'union de trois lignes parallèles horizontales.
 %La figure \ref{fig:F32decomp} représente cette décomposition.
 
 \begin{figure}[h!] %\label{fig:F32decomp}
