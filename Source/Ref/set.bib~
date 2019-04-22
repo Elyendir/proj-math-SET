@@ -1,0 +1,23 @@
+@Article{Davis2003,
+author="Davis, Benjamin Lent
+and Maclagan, Diane",
+title="The card game set",
+journal="The Mathematical Intelligencer",
+year="2003",
+month="Jun",
+day="01",
+volume="25",
+number="3",
+pages="33--40",
+abstract="This column is a place for those bits of contagious mathematics that travel from person to person in the community, because they are so elegant, suprising, or appealing that one has an urge to pass them on.",
+issn="0343-6993",
+doi="10.1007/BF02984846",
+url="https://doi.org/10.1007/BF02984846"
+}
+
+@Article{Jaliniere2013,
+author="Jalinière, Pierre",
+title="Le jeu Set",
+journal="Image des mathématiques",
+year="2013"
+}
